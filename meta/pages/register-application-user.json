@@ -1,0 +1,215 @@
+{
+  "access": [
+    "Everybody"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "action": "account/register",
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "userName",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Email",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "userName",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${user.Name}"
+                            },
+                            {
+                              "component": "userName",
+                              "name": "EmailRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Pole wymagane",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Password",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Hasło",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "password",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "password",
+                              "value": "${user.Password}"
+                            },
+                            {
+                              "component": "Password",
+                              "name": "PasswordRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Pole wymagane",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ConfirmPassword",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Powtórz hasło",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "ConfirmPassword",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "password",
+                              "value": "${user.ConfirmPassword}"
+                            },
+                            {
+                              "component": "ConfirmPassword",
+                              "name": "ConfirmPasswordRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Pole wymagane",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Zarejestruj",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "back"
+                                  }
+                                ]
+                              },
+                              "text": "Anuluj",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
+                    }
+                  ],
+                  "data": "${user}",
+                  "itemType": "ApplicationUser",
+                  "method": "post",
+                  "name": "form0",
+                  "type": "template-form",
+                  "visible": "${user != null}"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "user",
+        "type": "set",
+        "value": "new ApplicationUser();",
+        "valueType": "ApplicationUser"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Register Application User"
+}

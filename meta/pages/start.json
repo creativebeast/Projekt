@@ -1,0 +1,59 @@
+{
+  "access": "Authenticated",
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12 justify-content-center d-flex",
+              "components": [
+                {
+                  "name": "label0",
+                  "style": {
+                    "fontSize": "30px",
+                    "height": ""
+                  },
+                  "text": "Car Repair System",
+                  "type": "label"
+                }
+              ],
+              "name": "col0",
+              "type": "col"
+            }
+          ],
+          "name": "row0",
+          "style": {
+            "marginBottom": "20px"
+          },
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12 justify-content-center d-flex",
+              "components": [
+                {
+                  "name": "image0",
+                  "path": "/assets/images/car-repair.jpg",
+                  "style": {
+                    "width": "60%"
+                  },
+                  "type": "image"
+                }
+              ],
+              "name": "col1",
+              "type": "col"
+            }
+          ],
+          "name": "row1",
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "layout": "Main",
+  "name": "Start"
+}

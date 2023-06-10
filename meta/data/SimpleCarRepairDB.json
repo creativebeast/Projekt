@@ -1,0 +1,939 @@
+{
+  "info": {
+    "title": "SimpleCarRepairDB",
+    "x-type": "odata",
+    "x-connector": "mssql",
+    "x-connector-version": 15,
+    "x-infer-aspnet": false,
+    "x-infer-tables": true,
+    "x-infer-relations": true,
+    "x-infer-views": true,
+    "x-infer-sps": true
+  },
+  "definitions": {
+    "Client": {
+      "x-table": "dbo.Clients",
+      "resource": "Clients",
+      "required": [
+        "Name",
+        "LastName",
+        "Phone",
+        "Email",
+        "NIP"
+      ],
+      "properties": {
+        "Id": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "Client",
+              "name": "Repairs",
+              "type": "Repair"
+            }
+          ]
+        },
+        "Name": {
+          "x-nullable": false,
+          "type": "string"
+        },
+        "LastName": {
+          "x-nullable": false,
+          "type": "string"
+        },
+        "Phone": {
+          "x-nullable": false,
+          "type": "string"
+        },
+        "Email": {
+          "x-nullable": false,
+          "type": "string"
+        },
+        "NIP": {
+          "x-nullable": false,
+          "type": "string"
+        },
+        "Repairs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Repair"
+          }
+        }
+      }
+    },
+    "Part": {
+      "x-table": "dbo.Parts",
+      "resource": "Parts",
+      "required": [
+        "Name",
+        "EAN",
+        "Image",
+        "Cost"
+      ],
+      "properties": {
+        "Id": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "Part",
+              "name": "PartReapirs",
+              "type": "PartReapir"
+            }
+          ]
+        },
+        "Name": {
+          "x-nullable": false,
+          "type": "string"
+        },
+        "EAN": {
+          "x-nullable": false,
+          "type": "string"
+        },
+        "Image": {
+          "x-nullable": false,
+          "type": "string"
+        },
+        "Cost": {
+          "x-nullable": false,
+          "x-precision": 18,
+          "x-scale": 2,
+          "type": "number",
+          "format": "decimal"
+        },
+        "PartReapirs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PartReapir"
+          }
+        }
+      }
+    },
+    "PartReapir": {
+      "x-table": "dbo.PartReapir",
+      "resource": "PartReapirs",
+      "required": [
+        "PartId"
+      ],
+      "properties": {
+        "Id": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer"
+        },
+        "Part": {
+          "type": "object",
+          "$ref": "#/definitions/Part"
+        },
+        "PartId": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "Parts",
+            "parentEntityType": "Part",
+            "type": "Part",
+            "principalKey": "Id",
+            "name": "Part",
+            "textProperty": "Name",
+            "navigationProperty": "PartReapirs"
+          }
+        },
+        "Repair": {
+          "type": "object",
+          "$ref": "#/definitions/Repair"
+        },
+        "RepairId": {
+          "x-precision": 10,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "Repairs",
+            "parentEntityType": "Repair",
+            "type": "Repair",
+            "principalKey": "Id",
+            "name": "Repair",
+            "textProperty": "CarImage",
+            "navigationProperty": "PartReapirs"
+          }
+        },
+        "Quantity": {
+          "x-default-sql": "((0))",
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer"
+        }
+      }
+    },
+    "Repair": {
+      "x-table": "dbo.Repairs",
+      "resource": "Repairs",
+      "required": [
+        "Date",
+        "CarImage",
+        "DamageImage",
+        "ClientId",
+        "MechanicId",
+        "Description"
+      ],
+      "properties": {
+        "Id": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "Repair",
+              "name": "PartReapirs",
+              "type": "PartReapir"
+            }
+          ]
+        },
+        "Date": {
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time",
+          "x-datetime": "datetime2"
+        },
+        "CarImage": {
+          "x-nullable": false,
+          "type": "string"
+        },
+        "DamageImage": {
+          "x-nullable": false,
+          "type": "string"
+        },
+        "Client": {
+          "type": "object",
+          "$ref": "#/definitions/Client"
+        },
+        "ClientId": {
+          "x-nullable": false,
+          "x-precision": 10,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "Clients",
+            "parentEntityType": "Client",
+            "type": "Client",
+            "principalKey": "Id",
+            "name": "Client",
+            "textProperty": "Name",
+            "navigationProperty": "Repairs"
+          }
+        },
+        "MechanicId": {
+          "x-nullable": false,
+          "type": "string"
+        },
+        "Description": {
+          "x-nullable": false,
+          "type": "string"
+        },
+        "Finished": {
+          "x-default-sql": "(CONVERT([bit],(0)))",
+          "x-nullable": false,
+          "type": "boolean"
+        },
+        "Deactivated": {
+          "x-default-sql": "(CONVERT([bit],(0)))",
+          "x-nullable": false,
+          "type": "boolean"
+        },
+        "PartReapirs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PartReapir"
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/Clients": {
+      "get": {
+        "operationId": "getClients",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Client"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createClient",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Client",
+            "schema": {
+              "$ref": "#/definitions/Client"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Client"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Parts": {
+      "get": {
+        "operationId": "getParts",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Part"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createPart",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Part",
+            "schema": {
+              "$ref": "#/definitions/Part"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Part"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/PartReapirs": {
+      "get": {
+        "operationId": "getPartReapirs",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/PartReapir"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createPartReapir",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "PartReapir",
+            "schema": {
+              "$ref": "#/definitions/PartReapir"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/PartReapir"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Repairs": {
+      "get": {
+        "operationId": "getRepairs",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Repair"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createRepair",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Repair",
+            "schema": {
+              "$ref": "#/definitions/Repair"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Repair"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Clients({Id})": {
+      "delete": {
+        "operationId": "deleteClient",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getClientById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Client"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateClient",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Client",
+            "schema": {
+              "$ref": "#/definitions/Client"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelClientChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Client",
+            "schema": {
+              "$ref": "#/definitions/Client"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Parts({Id})": {
+      "delete": {
+        "operationId": "deletePart",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getPartById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Part"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updatePart",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Part",
+            "schema": {
+              "$ref": "#/definitions/Part"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelPartChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Part",
+            "schema": {
+              "$ref": "#/definitions/Part"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/PartReapirs({Id})": {
+      "delete": {
+        "operationId": "deletePartReapir",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getPartReapirById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/PartReapir"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updatePartReapir",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "PartReapir",
+            "schema": {
+              "$ref": "#/definitions/PartReapir"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelPartReapirChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "PartReapir",
+            "schema": {
+              "$ref": "#/definitions/PartReapir"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Repairs({Id})": {
+      "delete": {
+        "operationId": "deleteRepair",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getRepairById",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Repair"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateRepair",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Id",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Repair",
+            "schema": {
+              "$ref": "#/definitions/Repair"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelRepairChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Repair",
+            "schema": {
+              "$ref": "#/definitions/Repair"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "basePath": "/odata/SimpleCarRepairDB",
+  "host": "localhost:5000",
+  "schemes": [
+    "http"
+  ]
+}

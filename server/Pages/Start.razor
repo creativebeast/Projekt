@@ -1,0 +1,29 @@
+﻿@page "/"
+@page "/start"
+@layout MainLayout
+@inherits SimpleCarRepair.Pages.StartComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using SimpleCarRepair.Models.SimpleCarRepairDb
+@using Microsoft.AspNetCore.Identity;
+@using SimpleCarRepair.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<PageTitle>Start</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <div style="margin-bottom: 20px" class="row">
+      <div class="col-md-12 justify-content-center d-flex">
+        <RadzenLabel style="font-size: 30px; height: " Text="Car Repair System">
+        </RadzenLabel>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 justify-content-center d-flex">
+        <RadzenImage Path="assets/images/car-repair.jpg" style="width: 60%">
+        </RadzenImage>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

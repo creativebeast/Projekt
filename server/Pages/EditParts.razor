@@ -1,0 +1,78 @@
+﻿@page "/edit-parts/{Id}"
+@layout MainLayout
+@inherits SimpleCarRepair.Pages.EditPartsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using SimpleCarRepair.Models.SimpleCarRepairDb
+@using Microsoft.AspNetCore.Identity;
+@using SimpleCarRepair.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<PageTitle>Edit Parts</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@part" TItem="SimpleCarRepair.Models.SimpleCarRepairDb.Part" Visible="@(part != null)" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Name" style="width: 100%" Text="Nazwa">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(part.Name)" Name="Name">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="Name" style="position: absolute" Text="Pole wymagane">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="EAN" style="width: 100%" Text="Ean">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(part.EAN)" Name="EAN">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="EAN" style="position: absolute" Text="Pole wymagane">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Image" style="width: 100%" Text="Zdjęcie">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenFileInput ChooseText="Wybierz" @bind-Value="@(part.Image)" Name="FileInput0" TValue="string">
+                </RadzenFileInput>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Cost" style="width: 100%" Text="Cena">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenNumeric style="display: block; width: 100%" @bind-Value="@(part.Cost)" Name="Cost">
+                </RadzenNumeric>
+                <RadzenRequiredValidator Component="Cost" style="position: absolute" Text="Pole wymagane">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Zapisz">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Anuluj" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

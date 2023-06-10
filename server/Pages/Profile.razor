@@ -1,0 +1,70 @@
+﻿@page "/profile"
+@layout MainLayout
+@inherits SimpleCarRepair.Pages.ProfileComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using SimpleCarRepair.Models.SimpleCarRepairDb
+@using Microsoft.AspNetCore.Identity;
+@using SimpleCarRepair.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<PageTitle>Profile</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Profil">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Action="account/changepassword" Data="@user" TItem="ApplicationUser" Method="post" Visible="@(user != null)">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="OldPassword" style="width: 100%" Text="Obecne hasło">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenPassword style="display: block; width: 100%" @bind-Value="@oldPassword" Name="OldPassword">
+                </RadzenPassword>
+                <RadzenRequiredValidator Component="OldPassword" style="position: absolute" Text="Pole wymagane">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="NewPassword" style="width: 100%" Text="Nowe hasło">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenPassword style="display: block; width: 100%" @bind-Value="@newPassword" Name="NewPassword">
+                </RadzenPassword>
+                <RadzenRequiredValidator Component="NewPassword" style="position: absolute" Text="Pole wymagane">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="ConfirmPassword" style="width: 100%" Text="Powtórz haslło">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenPassword style="display: block; width: 100%" @bind-Value="@confirmPassword" Name="ConfirmPassword">
+                </RadzenPassword>
+                <RadzenRequiredValidator Component="ConfirmPassword" style="position: absolute" Text="Pole wymagane">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Zmień hasło">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Anuluj" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

@@ -1,0 +1,252 @@
+{
+  "access": [
+    "Authenticated"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Profil",
+          "type": "heading"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "action": "account/changepassword",
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "OldPassword",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Obecne hasło",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "OldPassword",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "password",
+                              "value": "${oldPassword}"
+                            },
+                            {
+                              "component": "OldPassword",
+                              "name": "OldPasswordRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Pole wymagane",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "NewPassword",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Nowe hasło",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "NewPassword",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "password",
+                              "value": "${newPassword}"
+                            },
+                            {
+                              "component": "NewPassword",
+                              "name": "NewPasswordRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Pole wymagane",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ConfirmPassword",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Powtórz haslło",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "ConfirmPassword",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "password",
+                              "value": "${confirmPassword}"
+                            },
+                            {
+                              "component": "ConfirmPassword",
+                              "name": "ConfirmPasswordRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Pole wymagane",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Zmień hasło",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "back"
+                                  }
+                                ]
+                              },
+                              "text": "Anuluj",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
+                    }
+                  ],
+                  "data": "${user}",
+                  "itemType": "ApplicationUser",
+                  "method": "post",
+                  "name": "form0",
+                  "type": "template-form",
+                  "visible": "${user != null}"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "condition": "Security.User != null",
+        "name": "Security.getUserById",
+        "parameters": [
+          {
+            "name": "Id",
+            "value": "${Security.User.Id}"
+          }
+        ],
+        "then": [
+          {
+            "name": "user",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "ApplicationUser"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "oldPassword",
+        "type": "set",
+        "value": "\"\"",
+        "valueType": "string"
+      },
+      {
+        "name": "newPassword",
+        "type": "set",
+        "value": "\"\"",
+        "valueType": "string"
+      },
+      {
+        "name": "confirmPassword",
+        "type": "set",
+        "value": "\"\"",
+        "valueType": "string"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Profile"
+}

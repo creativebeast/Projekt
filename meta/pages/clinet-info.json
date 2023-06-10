@@ -1,0 +1,195 @@
+{
+  "access": "Authenticated",
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12  d-flex justify-content-between",
+              "components": [
+                {
+                  "name": "label0",
+                  "style": {
+                    "fontSize": "18px"
+                  },
+                  "text": "Imię:",
+                  "type": "label"
+                },
+                {
+                  "name": "label1",
+                  "style": {
+                    "fontSize": "18px"
+                  },
+                  "text": "${client.Name}",
+                  "type": "label"
+                }
+              ],
+              "name": "col0",
+              "type": "col"
+            }
+          ],
+          "name": "row0",
+          "style": {
+            "marginBottom": "10px"
+          },
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12  d-flex justify-content-between",
+              "components": [
+                {
+                  "name": "label2",
+                  "style": {
+                    "fontSize": "18px"
+                  },
+                  "text": "Nazwisko:",
+                  "type": "label"
+                },
+                {
+                  "name": "label3",
+                  "style": {
+                    "fontSize": "18px"
+                  },
+                  "text": "${client.LastName}",
+                  "type": "label"
+                }
+              ],
+              "name": "col1",
+              "type": "col"
+            }
+          ],
+          "name": "row1",
+          "style": {
+            "marginBottom": "10px"
+          },
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12  d-flex justify-content-between",
+              "components": [
+                {
+                  "name": "label4",
+                  "style": {
+                    "fontSize": "18px"
+                  },
+                  "text": "Email:",
+                  "type": "label"
+                },
+                {
+                  "name": "label5",
+                  "style": {
+                    "fontSize": "18px"
+                  },
+                  "text": "${client.Email}",
+                  "type": "label"
+                }
+              ],
+              "name": "col2",
+              "type": "col"
+            }
+          ],
+          "name": "row2",
+          "style": {
+            "marginBottom": "10px"
+          },
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12  d-flex justify-content-between",
+              "components": [
+                {
+                  "name": "label6",
+                  "style": {
+                    "fontSize": "18px"
+                  },
+                  "text": "Telefon:",
+                  "type": "label"
+                },
+                {
+                  "name": "label7",
+                  "style": {
+                    "fontSize": "18px"
+                  },
+                  "text": "${client.Phone}",
+                  "type": "label"
+                }
+              ],
+              "name": "col3",
+              "type": "col"
+            }
+          ],
+          "name": "row3",
+          "style": {
+            "marginBottom": "10px"
+          },
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12  d-flex justify-content-between",
+              "components": [
+                {
+                  "name": "label8",
+                  "style": {
+                    "fontSize": "18px"
+                  },
+                  "text": "NIP:",
+                  "type": "label"
+                },
+                {
+                  "name": "label9",
+                  "style": {
+                    "fontSize": "18px"
+                  },
+                  "text": "${client.NIP}",
+                  "type": "label"
+                }
+              ],
+              "name": "col4",
+              "type": "col"
+            }
+          ],
+          "name": "row4",
+          "style": {
+            "marginBottom": "10px"
+          },
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "SimpleCarRepairDB.getClientById",
+        "parameters": [
+          {
+            "name": "Id",
+            "value": "${parameters.id}"
+          }
+        ],
+        "then": [
+          {
+            "name": "client",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "SimpleCarRepair.Models.SimpleCarRepairDb.Client"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "ClinetInfo"
+}

@@ -1,0 +1,56 @@
+﻿@page "/clinet-info/{id}"
+@layout MainLayout
+@inherits SimpleCarRepair.Pages.ClinetInfoComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using SimpleCarRepair.Models.SimpleCarRepairDb
+@using Microsoft.AspNetCore.Identity;
+@using SimpleCarRepair.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<PageTitle>ClinetInfo</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <div style="margin-bottom: 10px" class="row">
+      <div class="col-md-12  d-flex justify-content-between">
+        <RadzenLabel style="font-size: 18px" Text="Imię:">
+        </RadzenLabel>
+        <RadzenLabel style="font-size: 18px" Text="@($"{(client.Name)}")">
+        </RadzenLabel>
+      </div>
+    </div>
+    <div style="margin-bottom: 10px" class="row">
+      <div class="col-md-12  d-flex justify-content-between">
+        <RadzenLabel style="font-size: 18px" Text="Nazwisko:">
+        </RadzenLabel>
+        <RadzenLabel style="font-size: 18px" Text="@($"{(client.LastName)}")">
+        </RadzenLabel>
+      </div>
+    </div>
+    <div style="margin-bottom: 10px" class="row">
+      <div class="col-md-12  d-flex justify-content-between">
+        <RadzenLabel style="font-size: 18px" Text="Email:">
+        </RadzenLabel>
+        <RadzenLabel style="font-size: 18px" Text="@($"{(client.Email)}")">
+        </RadzenLabel>
+      </div>
+    </div>
+    <div style="margin-bottom: 10px" class="row">
+      <div class="col-md-12  d-flex justify-content-between">
+        <RadzenLabel style="font-size: 18px" Text="Telefon:">
+        </RadzenLabel>
+        <RadzenLabel style="font-size: 18px" Text="@($"{(client.Phone)}")">
+        </RadzenLabel>
+      </div>
+    </div>
+    <div style="margin-bottom: 10px" class="row">
+      <div class="col-md-12  d-flex justify-content-between">
+        <RadzenLabel style="font-size: 18px" Text="NIP:">
+        </RadzenLabel>
+        <RadzenLabel style="font-size: 18px" Text="@($"{(client.NIP)}")">
+        </RadzenLabel>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

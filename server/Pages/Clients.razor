@@ -1,0 +1,44 @@
+﻿@page "/clients"
+@layout MainLayout
+@inherits SimpleCarRepair.Pages.ClientsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using SimpleCarRepair.Models.SimpleCarRepairDb
+@using Microsoft.AspNetCore.Identity;
+@using SimpleCarRepair.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles="Authenticated, Administrator, Mechanic")]
+<PageTitle>Clients</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Dodaj" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@getClientsResult" FilterMode="Radzen.FilterMode.Advanced" TItem="SimpleCarRepair.Models.SimpleCarRepairDb.Client" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenDataGridColumn TItem="SimpleCarRepair.Models.SimpleCarRepairDb.Client" Property="Id" Title="Id">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="SimpleCarRepair.Models.SimpleCarRepairDb.Client" Property="Name" Title="Imię">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="SimpleCarRepair.Models.SimpleCarRepairDb.Client" Property="LastName" Title="Nazwisko">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="SimpleCarRepair.Models.SimpleCarRepairDb.Client" Property="Phone" Title="Telefon">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="SimpleCarRepair.Models.SimpleCarRepairDb.Client" Property="Email" Title="Email">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="SimpleCarRepair.Models.SimpleCarRepairDb.Client" Property="NIP" Title="NIP">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="SimpleCarRepair.Models.SimpleCarRepairDb.Client" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+              <Template Context="simpleCarRepairModelsSimpleCarRepairDbClient">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, simpleCarRepairModelsSimpleCarRepairDbClient))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

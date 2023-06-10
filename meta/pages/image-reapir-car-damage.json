@@ -1,0 +1,50 @@
+{
+  "access": "Authenticated",
+  "components": [
+    {
+      "components": [
+        {
+          "class": "col-md-12",
+          "components": [
+            {
+              "name": "image0",
+              "path": "${image}",
+              "style": {
+                "width": "100%"
+              },
+              "type": "image"
+            }
+          ],
+          "name": "col0",
+          "type": "col"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "SimpleCarRepairDB.getRepairById",
+        "parameters": [
+          {
+            "name": "Id",
+            "value": "${parameters.id}"
+          }
+        ],
+        "then": [
+          {
+            "name": "image",
+            "type": "set",
+            "value": "${result.DamageImage}",
+            "valueType": "string"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "ImageReapirCarDamage"
+}

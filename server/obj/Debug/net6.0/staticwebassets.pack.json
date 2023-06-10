@@ -1,0 +1,129 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\css\\standard.css",
+      "PackagePath": "staticwebassets\\assets\\css\\standard.css"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\css\\styles-generated.css",
+      "PackagePath": "staticwebassets\\assets\\css\\styles-generated.css"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\css\\styles.css",
+      "PackagePath": "staticwebassets\\assets\\css\\styles.css"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\MaterialIcons-Regular.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\MaterialIcons-Regular.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\SourceSansPro-Black.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-Black.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\SourceSansPro-BlackIt.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-BlackIt.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\SourceSansPro-Bold.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-Bold.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\SourceSansPro-BoldIt.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-BoldIt.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\SourceSansPro-ExtraLight.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-ExtraLight.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\SourceSansPro-ExtraLightIt.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-ExtraLightIt.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\SourceSansPro-It.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-It.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\SourceSansPro-Light.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-Light.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\SourceSansPro-LightIt.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-LightIt.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\SourceSansPro-Regular.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-Regular.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\SourceSansPro-Semibold.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-Semibold.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\SourceSansPro-SemiboldIt.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\SourceSansPro-SemiboldIt.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\roboto-regular.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\roboto-regular.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\roboto-v15-latin-300.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\roboto-v15-latin-300.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\roboto-v15-latin-700.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\roboto-v15-latin-700.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\roboto-v15-latin-regular.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\roboto-v15-latin-regular.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\roboto-v30-latin-300.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\roboto-v30-latin-300.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\roboto-v30-latin-500.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\roboto-v30-latin-500.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\roboto-v30-latin-700.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\roboto-v30-latin-700.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\fonts\\roboto-v30-latin-regular.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\roboto-v30-latin-regular.woff"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\images\\car-repair.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\car-repair.jpg"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\assets\\images\\istockphoto-1211154399-612x612.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\istockphoto-1211154399-612x612.jpg"
+    },
+    {
+      "Id": "C:\\Users\\usual\\Desktop\\SimpleCarRepair\\server\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.SimpleCarRepair.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.SimpleCarRepair.props",
+      "PackagePath": "build\\SimpleCarRepair.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.SimpleCarRepair.props",
+      "PackagePath": "buildMultiTargeting\\SimpleCarRepair.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.SimpleCarRepair.props",
+      "PackagePath": "buildTransitive\\SimpleCarRepair.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

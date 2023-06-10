@@ -1,0 +1,515 @@
+{
+  "access": [
+    "Authenticated",
+    "Administrator"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12  d-flex justify-content-between align-items-center",
+              "components": [
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "path": "add-repairs",
+                        "then": [
+                          {
+                            "code": "await grid0.Reload();",
+                            "type": "execute"
+                          },
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ],
+                        "type": "popup"
+                      }
+                    ]
+                  },
+                  "icon": "add_circle_outline",
+                  "name": "button0",
+                  "style": {
+                    "marginBottom": "10px"
+                  },
+                  "text": "Dodaj",
+                  "type": "button"
+                },
+                {
+                  "dateFormat": "dd.MM.yyyy",
+                  "events": {
+                    "change": [
+                      {
+                        "name": "GetRepairs",
+                        "schema": {
+                          "async": true,
+                          "dotnetType": "System.Threading.Tasks.Task<System.Linq.IQueryable<SimpleCarRepair.Models.SimpleCarRepairDb.Repair>>",
+                          "items": {
+                            "$ref": "#/definitions/Repair",
+                            "dotnetType": "SimpleCarRepair.Models.SimpleCarRepairDb.Repair"
+                          },
+                          "type": "array"
+                        },
+                        "then": [
+                          {
+                            "name": "Repairs",
+                            "type": "set",
+                            "value": "${result}",
+                            "valueType": "IEnumerable<SimpleCarRepair.Models.SimpleCarRepairDb.Repair>"
+                          }
+                        ],
+                        "type": "invoke-method"
+                      },
+                      {
+                        "name": "PartReapirs",
+                        "type": "set",
+                        "value": "new List<PartReapir>()",
+                        "valueType": "IEnumerable<SimpleCarRepair.Models.SimpleCarRepairDb.PartReapir>"
+                      }
+                    ]
+                  },
+                  "name": "datepicker0",
+                  "type": "datepicker",
+                  "value": "${Date}"
+                }
+              ],
+              "name": "col0",
+              "style": {
+                "marginBottom": "10px",
+                "paddingBottom": ""
+              },
+              "type": "col"
+            }
+          ],
+          "name": "row0",
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "allowFiltering": true,
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "columns": [
+                    {
+                      "property": "Id",
+                      "title": "Id",
+                      "width": "80px"
+                    },
+                    {
+                      "property": "Description",
+                      "template": "",
+                      "title": "Opis"
+                    },
+                    {
+                      "filterTemplate": "",
+                      "filterable": false,
+                      "property": "CarImage",
+                      "sortable": false,
+                      "template": [
+                        {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": "true"
+                            }
+                          ],
+                          "events": {
+                            "click": [
+                              {
+                                "parameters": [
+                                  {
+                                    "name": "id",
+                                    "value": "${data.Id}"
+                                  }
+                                ],
+                                "path": "image-reapir-car",
+                                "title": "Repair Car",
+                                "type": "popup"
+                              }
+                            ]
+                          },
+                          "icon": "perm_media",
+                          "name": "button1",
+                          "size": "ButtonSize.Small",
+                          "text": "",
+                          "type": "button"
+                        }
+                      ],
+                      "textAlign": "center",
+                      "title": "Pojazd",
+                      "width": "100px"
+                    },
+                    {
+                      "filterable": false,
+                      "property": "DamageImage",
+                      "sortable": false,
+                      "template": [
+                        {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": "true"
+                            }
+                          ],
+                          "buttonStyle": "secondary",
+                          "events": {
+                            "click": [
+                              {
+                                "parameters": [
+                                  {
+                                    "name": "id",
+                                    "value": "${data.Id}"
+                                  }
+                                ],
+                                "path": "image-reapir-car-damage",
+                                "title": "Car Damage",
+                                "type": "popup"
+                              }
+                            ]
+                          },
+                          "icon": "insert_photo",
+                          "name": "button2",
+                          "size": "ButtonSize.Small",
+                          "text": "",
+                          "type": "button"
+                        }
+                      ],
+                      "textAlign": "center",
+                      "title": "Uszkodzenie",
+                      "width": "100px"
+                    },
+                    {
+                      "filterTemplate": "",
+                      "format": "",
+                      "property": "MechanicId",
+                      "textAlign": "center",
+                      "title": "Id mechanika",
+                      "type": "string",
+                      "width": "200px"
+                    },
+                    {
+                      "filterProperty": "Client.Name",
+                      "filterable": false,
+                      "groupProperty": "Client.Name",
+                      "property": "ClientId",
+                      "sortProperty": "Client.Name",
+                      "sortable": false,
+                      "template": [
+                        {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": "true"
+                            }
+                          ],
+                          "buttonStyle": "info",
+                          "events": {
+                            "click": [
+                              {
+                                "parameters": [
+                                  {
+                                    "name": "id",
+                                    "value": "${data.Client.Id}"
+                                  }
+                                ],
+                                "path": "clinet-info",
+                                "title": "Client Info",
+                                "type": "popup"
+                              }
+                            ]
+                          },
+                          "icon": "supervisor_account",
+                          "name": "button3",
+                          "size": "ButtonSize.Small",
+                          "text": "",
+                          "type": "button"
+                        }
+                      ],
+                      "textAlign": "center",
+                      "title": "Klient",
+                      "width": "100px"
+                    },
+                    {
+                      "template": [
+                        {
+                          "name": "label0",
+                          "text": "${data.Deactivated == true ? \"✓\" : \"x\"}",
+                          "type": "label"
+                        }
+                      ],
+                      "textAlign": "center",
+                      "title": "Dezaktywacja",
+                      "width": "130px"
+                    }
+                  ],
+                  "data": "${Repairs}",
+                  "events": {
+                    "loadData": [],
+                    "render": [
+                      {
+                        "condition": "grid0.Query.Filter != lastFilter",
+                        "name": "master",
+                        "type": "set",
+                        "value": "grid0.View.FirstOrDefault()",
+                        "valueType": "SimpleCarRepair.Models.SimpleCarRepairDb.Repair"
+                      },
+                      {
+                        "code": "await grid0.SelectRow(master)",
+                        "condition": "grid0.Query.Filter != lastFilter",
+                        "then": [],
+                        "type": "execute"
+                      },
+                      {
+                        "name": "lastFilter",
+                        "type": "set",
+                        "value": "grid0.Query.Filter",
+                        "valueType": "string"
+                      }
+                    ],
+                    "rowDoubleClick": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "Id",
+                            "value": "${event.Data.Id}"
+                          }
+                        ],
+                        "path": "edit-repairs",
+                        "then": [],
+                        "type": "popup"
+                      }
+                    ],
+                    "rowSelect": [
+                      {
+                        "name": "master",
+                        "type": "set",
+                        "value": "${event}",
+                        "valueType": "SimpleCarRepair.Models.SimpleCarRepairDb.Repair"
+                      },
+                      {
+                        "condition": "${event} == null",
+                        "name": "PartReapirs",
+                        "type": "set",
+                        "value": "null",
+                        "valueType": "IEnumerable<SimpleCarRepair.Models.SimpleCarRepairDb.PartReapir>"
+                      },
+                      {
+                        "condition": "${event} != null",
+                        "name": "SimpleCarRepairDB.getPartReapirs",
+                        "parameters": [
+                          {
+                            "name": "$filter",
+                            "value": "i => i.RepairId == ${event.Id}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "name": "PartReapirs",
+                            "type": "set",
+                            "value": "${result}",
+                            "valueType": "IEnumerable<SimpleCarRepair.Models.SimpleCarRepairDb.PartReapir>"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "filterMode": "advanced",
+                  "itemType": "SimpleCarRepair.Models.SimpleCarRepairDb.Repair",
+                  "name": "grid0",
+                  "title": "",
+                  "type": "datagrid"
+                },
+                {
+                  "disabled": "${this.master == null}",
+                  "events": {
+                    "click": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "RepairId",
+                            "type": "integer",
+                            "value": "${master.Id}"
+                          }
+                        ],
+                        "path": "add-part-reapir",
+                        "then": [
+                          {
+                            "code": "await grid1.Reload();",
+                            "type": "execute"
+                          }
+                        ],
+                        "type": "popup"
+                      }
+                    ]
+                  },
+                  "icon": "add_circle_outline",
+                  "name": "PartReapirAddButton",
+                  "style": {
+                    "marginBottom": "10px",
+                    "marginTop": "10px"
+                  },
+                  "text": "Dodaj",
+                  "type": "button"
+                },
+                {
+                  "allowFiltering": true,
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "columns": [
+                    {
+                      "property": "Id",
+                      "title": "Id"
+                    },
+                    {
+                      "filterProperty": "Part.Name",
+                      "footerTemplate": [
+                        {
+                          "name": "label0",
+                          "text": "${\"Total: \" + PartReapirs?.Sum(x => x.Quantity * x.Part.Cost)}",
+                          "type": "label"
+                        }
+                      ],
+                      "groupProperty": "Part.Name",
+                      "property": "PartId",
+                      "sortProperty": "Part.Name",
+                      "template": "${data.Part?.Name}",
+                      "title": "Część"
+                    },
+                    {
+                      "format": "",
+                      "property": "Quantity",
+                      "title": "ilość",
+                      "type": "integer"
+                    },
+                    {
+                      "filterable": false,
+                      "sortable": false,
+                      "template": [
+                        {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
+                          "buttonStyle": "danger",
+                          "events": {
+                            "click": [
+                              {
+                                "condition": "await DialogService.Confirm(\"Are you sure you want to delete this record?\") == true",
+                                "error": [
+                                  {
+                                    "detail": "Unable to delete Repair",
+                                    "severity": "error",
+                                    "summary": "Error",
+                                    "type": "notify"
+                                  }
+                                ],
+                                "name": "SimpleCarRepairDB.deletePartReapir",
+                                "parameters": [
+                                  {
+                                    "name": "Id",
+                                    "value": "${data.Id}"
+                                  }
+                                ],
+                                "then": [
+                                  {
+                                    "code": "await grid1.Reload();",
+                                    "condition": "result != null",
+                                    "type": "execute"
+                                  }
+                                ],
+                                "type": "invoke"
+                              }
+                            ]
+                          },
+                          "icon": "close",
+                          "name": "PartReapirDeleteButton",
+                          "size": "sm",
+                          "text": "",
+                          "type": "button"
+                        }
+                      ],
+                      "textAlign": "center",
+                      "width": "70px"
+                    }
+                  ],
+                  "data": "${PartReapirs}",
+                  "events": {
+                    "rowSelect": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "Id",
+                            "value": "${event.Id}"
+                          }
+                        ],
+                        "path": "edit-part-reapir",
+                        "then": [
+                          {
+                            "code": "await grid1.Reload();",
+                            "type": "execute"
+                          }
+                        ],
+                        "type": "popup"
+                      }
+                    ]
+                  },
+                  "filterMode": "advanced",
+                  "itemType": "SimpleCarRepair.Models.SimpleCarRepairDb.PartReapir",
+                  "name": "grid1",
+                  "type": "datagrid"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "Date",
+        "type": "set",
+        "value": "DateTime.Now",
+        "valueType": "DateTime"
+      },
+      {
+        "name": "GetRepairs",
+        "schema": {
+          "async": true,
+          "dotnetType": "System.Threading.Tasks.Task<System.Linq.IQueryable<SimpleCarRepair.Models.SimpleCarRepairDb.Repair>>",
+          "items": {
+            "$ref": "#/definitions/Repair",
+            "dotnetType": "SimpleCarRepair.Models.SimpleCarRepairDb.Repair"
+          },
+          "type": "array"
+        },
+        "then": [
+          {
+            "name": "Repairs",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<SimpleCarRepair.Models.SimpleCarRepairDb.Repair>"
+          }
+        ],
+        "type": "invoke-method"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "AllRepairs"
+}

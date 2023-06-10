@@ -1,0 +1,86 @@
+﻿@inherits SimpleCarRepair.Layouts.MainLayoutComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using SimpleCarRepair.Models.SimpleCarRepairDb
+@using Microsoft.AspNetCore.Identity;
+@using SimpleCarRepair.Models
+@using SimpleCarRepair.Pages
+<RadzenDialog />
+<RadzenNotification />
+<RadzenTooltip />
+<RadzenContextMenu />
+
+<RadzenLayout>
+  <ChildContent>
+    <RadzenHeader>
+      <ChildContent>
+        <div class="row justify-content-start align-items-center">
+          <div class="col-6 d-flex align-items-center">
+            <RadzenSidebarToggle Click="@SidebarToggle0Click">
+            </RadzenSidebarToggle>
+            <RadzenLabel Text="SimpleCarRepair">
+            </RadzenLabel>
+          </div>
+          <div class="col-6 text-right">
+            <RadzenProfileMenu Visible="@(Security.IsAuthenticated())" Click="@Profilemenu0Click">
+              <ChildContent>
+                <RadzenProfileMenuItem Icon="settings" Path="profile" Text="Profil" Value="Profile" Visible="@Security.IsInRole(new string[]{"Authenticated"})">
+                </RadzenProfileMenuItem>
+                <RadzenProfileMenuItem Icon="person" Path="application-users" Text="Użytkownicy" Value="Users" Visible="@Security.IsInRole(new string[]{"Authenticated", "Administrator"})">
+                </RadzenProfileMenuItem>
+                <RadzenProfileMenuItem Icon="security" Path="application-roles" Text="Role" Value="Roles" Visible="@Security.IsInRole(new string[]{"Authenticated", "Administrator"})">
+                </RadzenProfileMenuItem>
+                <RadzenProfileMenuItem Icon="power_settings_new" Text="Wyloguj" Value="Logout">
+                </RadzenProfileMenuItem>
+              </ChildContent>
+              <Template>
+                <RadzenGravatar Email="@(Security.User?.Name)">
+                </RadzenGravatar>
+              </Template>
+            </RadzenProfileMenu>
+          </div>
+        </div>
+      </ChildContent>
+    </RadzenHeader>
+    <RadzenBody @ref="body0">
+      <ChildContent>
+        <RadzenContentContainer Name="main">
+        @Body
+        </RadzenContentContainer>
+      </ChildContent>
+    </RadzenBody>
+    <RadzenSidebar @ref="sidebar0">
+      <ChildContent>
+        <RadzenPanelMenu style="height: 100%">
+          <ChildContent>
+            <RadzenPanelMenuItem Icon="person_search" Path="clients" Text="Klienci" Visible="@Security.IsInRole(new string[]{"Everybody"})">
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Icon="view_headline" Path="parts" Text="Części" Visible="@Security.IsInRole(new string[]{"Everybody"})">
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Icon="construction" Path="repairs" Text="Naprawy" Visible="@Security.IsInRole(new string[]{"Authenticated", "Administrator", "Mechanic"})">
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Icon="perm_identity" Path="profile" Text="Profil" Visible="@Security.IsInRole(new string[]{"Authenticated"})">
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Text="Administracyjne">
+              <ChildContent>
+                <RadzenPanelMenuItem Icon="supervisor_account" Path="application-users" Text="Użytkownicy">
+                </RadzenPanelMenuItem>
+                <RadzenPanelMenuItem Icon="supervisor_account" Path="application-roles" Text="Role">
+                </RadzenPanelMenuItem>
+                <RadzenPanelMenuItem Icon="apps" Path="all-repairs" Text="Wszystkie naprawy">
+                </RadzenPanelMenuItem>
+              </ChildContent>
+            </RadzenPanelMenuItem>
+          </ChildContent>
+        </RadzenPanelMenu>
+      </ChildContent>
+    </RadzenSidebar>
+    <RadzenFooter>
+      <ChildContent>
+        <RadzenLabel Text="SimpleCarRepair, Copyright Ⓒ 2023">
+        </RadzenLabel>
+      </ChildContent>
+    </RadzenFooter>
+  </ChildContent>
+</RadzenLayout>

@@ -1,0 +1,18 @@
+﻿@page "/image/{Id}"
+@layout MainLayout
+@inherits SimpleCarRepair.Pages.ImageComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using SimpleCarRepair.Models.SimpleCarRepairDb
+@using Microsoft.AspNetCore.Identity;
+@using SimpleCarRepair.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<PageTitle>Image</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenImage Path="@image" style="width: 100%">
+    </RadzenImage>
+  </ChildContent>
+</RadzenContent>

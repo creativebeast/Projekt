@@ -1,0 +1,62 @@
+﻿@page "/receipt/{id}"
+@layout MainLayout
+@inherits SimpleCarRepair.Pages.ReceiptComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using SimpleCarRepair.Models.SimpleCarRepairDb
+@using Microsoft.AspNetCore.Identity;
+@using SimpleCarRepair.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<PageTitle>Receipt</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <div style="margin-bottom: 10px" class="row">
+      <div class="col-md-12 align-items-center d-flex justify-content-between">
+        <RadzenLabel Text="@($"{(RepairId.Client.Name + " " + RepairId.Client.LastName)}")">
+        </RadzenLabel>
+        <RadzenLabel Text="@($"{("Data: " + RepairId.Date.ToLongDateString())}")">
+        </RadzenLabel>
+      </div>
+    </div>
+    <div style="margin-bottom: 10px" class="row">
+      <div class="col-md-12 align-items-center d-flex justify-content-between">
+        <RadzenLabel Text="@($"{(RepairId.Client.Phone + " " + RepairId.Client.Email)}")">
+        </RadzenLabel>
+      </div>
+    </div>
+    <div style="margin-bottom: 20px" class="row">
+      <div class="col-md-12 align-items-center d-flex justify-content-between">
+        <RadzenLabel Text="@($"{(RepairId.Client.NIP)}")">
+        </RadzenLabel>
+      </div>
+    </div>
+    <div style="padding-bottom: 20px" class="row">
+      <div class="col-md-12 justify-content-center d-flex align-items-center">
+        <RadzenLabel style="font-size: 18px; font-weight: 600" Text="@($"{("ID " + RepairId.Id)}")">
+        </RadzenLabel>
+      </div>
+    </div>
+    <div style="margin-bottom: 20px" class="row">
+      <div class="col-md-12">
+        <RadzenDataGrid @ref="datagrid0" Data="@(RepairId.PartReapirs)" TItem="SimpleCarRepair.Models.SimpleCarRepairDb.PartReapir">
+          <Columns>
+            <RadzenDataGridColumn TItem="SimpleCarRepair.Models.SimpleCarRepairDb.PartReapir" Property="Part.Name" Title="Część">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="SimpleCarRepair.Models.SimpleCarRepairDb.PartReapir" Property="Quantity" Title="Ilość">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="SimpleCarRepair.Models.SimpleCarRepairDb.PartReapir" Property="Part.Cost" Title="Koszt">
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 justify-content-end d-flex">
+        <RadzenLabel style="font-size: 16px; font-weight: 600" Text="@($"{("Suma: " + RepairId?.PartReapirs?.Sum(x => x.Part.Cost * x.Quantity))}")">
+        </RadzenLabel>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

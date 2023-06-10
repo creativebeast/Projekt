@@ -1,0 +1,85 @@
+﻿@page "/repairs"
+@layout MainLayout
+@inherits SimpleCarRepair.Pages.RepairsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using SimpleCarRepair.Models.SimpleCarRepairDb
+@using Microsoft.AspNetCore.Identity;
+@using SimpleCarRepair.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize(Roles="Authenticated, Administrator, Mechanic")]
+<PageTitle>Repairs</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12  d-flex justify-content-between align-items-center" style="margin-bottom: 10px; padding-bottom: ">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Dodaj" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenDatePicker DateFormat="dd.MM.yyyy" @bind-Value="@Date" Name="Datepicker0" Change="@Datepicker0Change">
+        </RadzenDatePicker>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenDataGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@Repairs" FilterMode="Radzen.FilterMode.Advanced" TItem="SimpleCarRepair.Models.SimpleCarRepairDb.Repair" Render="@Grid0Render" RowDoubleClick="@Grid0RowDoubleClick" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenDataGridColumn TItem="SimpleCarRepair.Models.SimpleCarRepairDb.Repair" Property="Id" Title="Id" Width="80px">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="SimpleCarRepair.Models.SimpleCarRepairDb.Repair" Property="Description" Title="Opis">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="SimpleCarRepair.Models.SimpleCarRepairDb.Repair" Filterable="false" Property="CarImage" Sortable="false" TextAlign="TextAlign.Center" Title="Samochód" Width="100px">
+              <Template Context="simpleCarRepairModelsSimpleCarRepairDbRepair">
+                <RadzenButton Icon="perm_media" Size="ButtonSize.Small" Click="@((args) =>Button1Click(args, simpleCarRepairModelsSimpleCarRepairDbRepair))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="SimpleCarRepair.Models.SimpleCarRepairDb.Repair" Filterable="false" Property="DamageImage" Sortable="false" TextAlign="TextAlign.Center" Title="Uszkodzenie" Width="100px">
+              <Template Context="simpleCarRepairModelsSimpleCarRepairDbRepair">
+                <RadzenButton ButtonStyle="ButtonStyle.Secondary" Icon="insert_photo" Size="ButtonSize.Small" Click="@((args) =>Button2Click(args, simpleCarRepairModelsSimpleCarRepairDbRepair))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="SimpleCarRepair.Models.SimpleCarRepairDb.Repair" FilterProperty="Client.Name" Filterable="false" GroupProperty="Client.Name" Property="ClientId" SortProperty="Client.Name" Sortable="false" TextAlign="TextAlign.Center" Title="Klient" Width="100px">
+              <Template Context="simpleCarRepairModelsSimpleCarRepairDbRepair">
+                <RadzenButton ButtonStyle="ButtonStyle.Info" Icon="supervisor_account" Size="ButtonSize.Small" Click="@((args) =>Button3Click(args, simpleCarRepairModelsSimpleCarRepairDbRepair))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="SimpleCarRepair.Models.SimpleCarRepairDb.Repair" Filterable="false" Groupable="false" Resizable="false" Sortable="false" TextAlign="TextAlign.Center" Title="Paragon" Width="150px">
+              <Template Context="simpleCarRepairModelsSimpleCarRepairDbRepair">
+                <RadzenButton ButtonStyle="ButtonStyle.Warning" Icon="pageview" Size="ButtonSize.Small" Click="@((args) =>Button4Click(args, simpleCarRepairModelsSimpleCarRepairDbRepair))">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+        <RadzenButton Disabled="@(this.master == null)" Icon="add_circle_outline" style="margin-bottom: 10px; margin-top: 10px" Text="Dodaj" Click="@PartReapirAddButtonClick">
+        </RadzenButton>
+        <RadzenDataGrid @ref="grid1" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@PartReapirs" FilterMode="Radzen.FilterMode.Advanced" TItem="SimpleCarRepair.Models.SimpleCarRepairDb.PartReapir" RowSelect="@Grid1RowSelect">
+          <Columns>
+            <RadzenDataGridColumn TItem="SimpleCarRepair.Models.SimpleCarRepairDb.PartReapir" Property="Id" Title="Id">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="SimpleCarRepair.Models.SimpleCarRepairDb.PartReapir" FilterProperty="Part.Name" GroupProperty="Part.Name" Property="PartId" SortProperty="Part.Name" Title="Część">
+              <Template Context="data">
+              @(data.Part?.Name)
+              </Template>
+              <FooterTemplate>
+                <RadzenLabel Text="@($"{("Total: " + PartReapirs?.Sum(x => x.Quantity * x.Part.Cost))}")">
+                </RadzenLabel>
+              </FooterTemplate>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="SimpleCarRepair.Models.SimpleCarRepairDb.PartReapir" Property="Quantity" Title="Ilość">
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="SimpleCarRepair.Models.SimpleCarRepairDb.PartReapir" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="70px">
+              <Template Context="simpleCarRepairModelsSimpleCarRepairDbPartReapir">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>PartReapirDeleteButtonClick(args, simpleCarRepairModelsSimpleCarRepairDbPartReapir))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenDataGridColumn>
+          </Columns>
+        </RadzenDataGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

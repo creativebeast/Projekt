@@ -1,0 +1,232 @@
+{
+  "access": "Authenticated",
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "PartId",
+                              "name": "PartIdLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Część",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${getPartsForPartIdResult}",
+                              "name": "PartId",
+                              "placeholder": "Wybierz",
+                              "showSearch": false,
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "textProperty": "Name",
+                              "type": "dropdown-datagrid",
+                              "value": "${partreapir.PartId}",
+                              "valueProperty": "Id",
+                              "valueType": "int"
+                            },
+                            {
+                              "component": "PartId",
+                              "defaultValue": "0",
+                              "name": "PartIdRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Pole wymagane",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "PartId",
+                              "name": "label0",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "ilość",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col0",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "max": 1000,
+                              "min": 1,
+                              "name": "numeric0",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "numeric",
+                              "value": "${partreapir.Quantity}",
+                              "valueType": "int"
+                            }
+                          ],
+                          "name": "col1",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row0",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Zapisz",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              },
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Anuluj",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
+                    }
+                  ],
+                  "data": "${partreapir}",
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update PartReapir",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "SimpleCarRepairDB.updatePartReapir",
+                        "parameters": [
+                          {
+                            "name": "Id",
+                            "value": "${parameters.Id}"
+                          },
+                          {
+                            "name": "PartReapir",
+                            "value": "${partreapir}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "condition": "",
+                            "result": "${partreapir}",
+                            "type": "close-popup"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "itemType": "SimpleCarRepair.Models.SimpleCarRepairDb.PartReapir",
+                  "name": "form0",
+                  "type": "template-form",
+                  "visible": "${partreapir != null}"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "error": [],
+        "name": "SimpleCarRepairDB.getPartReapirById",
+        "parameters": [
+          {
+            "name": "Id",
+            "value": "${parameters.Id}"
+          }
+        ],
+        "then": [
+          {
+            "name": "partreapir",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "SimpleCarRepair.Models.SimpleCarRepairDb.PartReapir"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "SimpleCarRepairDB.getParts",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getPartsForPartIdResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<SimpleCarRepair.Models.SimpleCarRepairDb.Part>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Edit Part Reapir"
+}

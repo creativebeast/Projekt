@@ -1,0 +1,283 @@
+{
+  "access": "Authenticated",
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Name",
+                              "name": "NameLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Nazwa",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Name",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${part.Name}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "Name",
+                              "name": "NameRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Pole wymagane",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "EAN",
+                              "name": "EANLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Ean",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "EAN",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${part.EAN}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "EAN",
+                              "name": "EANRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Pole wymagane",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Image",
+                              "name": "ImageLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Zdjęcie",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "chooseText": "Wybierz",
+                              "name": "fileInput0",
+                              "type": "file-input",
+                              "value": "${part.Image}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Cost",
+                              "name": "CostLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Cena",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Cost",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "numeric",
+                              "value": "${part.Cost}",
+                              "valueType": "decimal"
+                            },
+                            {
+                              "component": "Cost",
+                              "name": "CostRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Pole wymagane",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Zapisz",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              },
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Anuluj",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
+                    }
+                  ],
+                  "data": "${part}",
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new Part!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "SimpleCarRepairDB.createPart",
+                        "parameters": [
+                          {
+                            "name": "Part",
+                            "value": "${part}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "result": "${part}",
+                            "type": "close-popup"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "itemType": "SimpleCarRepair.Models.SimpleCarRepairDb.Part",
+                  "name": "form0",
+                  "type": "template-form",
+                  "visible": "${part != null}"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "part",
+        "type": "set",
+        "value": "new SimpleCarRepair.Models.SimpleCarRepairDb.Part(){}",
+        "valueType": "SimpleCarRepair.Models.SimpleCarRepairDb.Part"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Add Parts"
+}

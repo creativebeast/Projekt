@@ -1,0 +1,43 @@
+{
+  "access": "Authenticated",
+  "components": [
+    {
+      "components": [
+        {
+          "name": "image0",
+          "path": "${image}",
+          "style": {
+            "width": "100%"
+          },
+          "type": "image"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "SimpleCarRepairDB.getPartById",
+        "parameters": [
+          {
+            "name": "Id",
+            "value": "${parameters.Id}"
+          }
+        ],
+        "then": [
+          {
+            "name": "image",
+            "type": "set",
+            "value": "${result.Image}",
+            "valueType": "string"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Image"
+}

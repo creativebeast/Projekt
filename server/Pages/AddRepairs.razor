@@ -1,0 +1,88 @@
+﻿@page "/add-repairs"
+@layout MainLayout
+@inherits SimpleCarRepair.Pages.AddRepairsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using SimpleCarRepair.Models.SimpleCarRepairDb
+@using Microsoft.AspNetCore.Identity;
+@using SimpleCarRepair.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<PageTitle>Add Repairs</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@repair" TItem="SimpleCarRepair.Models.SimpleCarRepairDb.Repair" Visible="@(repair != null)" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Date" style="width: 100%" Text="Data">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDatePicker DateFormat="dd.MM.yyyy" style="display: block; width: 100%" @bind-Value="@(repair.Date)" Name="Date">
+                </RadzenDatePicker>
+                <RadzenRequiredValidator Component="Date" style="position: absolute" Text="Pole wymagane">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="CarImage" style="width: 100%" Text="Zdjęcie pojazdu">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenFileInput ChooseText="Wybierz" @bind-Value="@(repair.CarImage)" Name="FileInput0" TValue="string">
+                </RadzenFileInput>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="DamageImage" style="width: 100%" Text="Zdjęcie uszkodzenia">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenFileInput ChooseText="Wybierz" @bind-Value="@(repair.DamageImage)" Name="FileInput1" TValue="string">
+                </RadzenFileInput>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="ClientId" style="width: 100%" Text="Klient">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDropDownDataGrid Data="@getClientsForClientIdResult" Placeholder="Wybierz" ShowSearch="false" style="display: block; width: 100%" TextProperty="Phone" @bind-Value="@(repair.ClientId)" ValueProperty="Id" Name="ClientId">
+                </RadzenDropDownDataGrid>
+                <RadzenRequiredValidator Component="ClientId" DefaultValue="0" style="position: absolute" Text="Pole wymagane">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Description" style="width: 100%" Text="Opis">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(repair.Description)" Name="Description">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="Description" style="position: absolute" Text="Pole wymagane">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Zapisz">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Anuluj" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

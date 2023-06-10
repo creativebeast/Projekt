@@ -1,0 +1,351 @@
+{
+  "access": "Authenticated",
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Date",
+                              "name": "DateLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Data",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "dateFormat": "dd.MM.yyyy",
+                              "name": "Date",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "datepicker",
+                              "value": "${repair.Date}",
+                              "valueType": "DateTime"
+                            },
+                            {
+                              "component": "Date",
+                              "name": "DateRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Pole wymagane",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "CarImage",
+                              "name": "CarImageLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Zdjęcie pojazdu",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "chooseText": "Wybierz",
+                              "name": "fileInput0",
+                              "type": "file-input",
+                              "value": "${repair.CarImage}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "DamageImage",
+                              "name": "DamageImageLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Zdjęcie uszkodzenia",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "chooseText": "Wybierz",
+                              "name": "fileInput1",
+                              "type": "file-input",
+                              "value": "${repair.DamageImage}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ClientId",
+                              "name": "ClientIdLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Klient",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${getClientsForClientIdResult}",
+                              "name": "ClientId",
+                              "placeholder": "Wybierz",
+                              "showSearch": false,
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "textProperty": "Phone",
+                              "type": "dropdown-datagrid",
+                              "value": "${repair.ClientId}",
+                              "valueProperty": "Id",
+                              "valueType": "int"
+                            },
+                            {
+                              "component": "ClientId",
+                              "defaultValue": "0",
+                              "name": "ClientIdRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Pole wymagane",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Description",
+                              "name": "DescriptionLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Opis",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Description",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${repair.Description}",
+                              "valueType": "string"
+                            },
+                            {
+                              "component": "Description",
+                              "name": "DescriptionRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Pole wymagane",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Zapisz",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              },
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Anuluj",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
+                    }
+                  ],
+                  "data": "${repair}",
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new Repair!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "SimpleCarRepairDB.createRepair",
+                        "parameters": [
+                          {
+                            "name": "Repair",
+                            "value": "${repair}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "result": "${repair}",
+                            "type": "close-popup"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "itemType": "SimpleCarRepair.Models.SimpleCarRepairDb.Repair",
+                  "name": "form0",
+                  "type": "template-form",
+                  "visible": "${repair != null}"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "error": [],
+        "name": "SimpleCarRepairDB.getClients",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getClientsForClientIdResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<SimpleCarRepair.Models.SimpleCarRepairDb.Client>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "repair",
+        "type": "set",
+        "value": "new SimpleCarRepair.Models.SimpleCarRepairDb.Repair(){}",
+        "valueType": "SimpleCarRepair.Models.SimpleCarRepairDb.Repair"
+      },
+      {
+        "name": "repair.MechanicId",
+        "type": "set",
+        "value": "${Security.User.Id}",
+        "valueType": "dynamic"
+      },
+      {
+        "name": "repair.Date",
+        "type": "set",
+        "value": "DateTime.Now",
+        "valueType": "DateTime"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Add Repairs"
+}

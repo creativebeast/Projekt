@@ -1,0 +1,54 @@
+﻿@page "/add-part-reapir/{RepairId}"
+@layout MainLayout
+@inherits SimpleCarRepair.Pages.AddPartReapirComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using SimpleCarRepair.Models.SimpleCarRepairDb
+@using Microsoft.AspNetCore.Identity;
+@using SimpleCarRepair.Models
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+<PageTitle>Add Part Reapir</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@partreapir" TItem="SimpleCarRepair.Models.SimpleCarRepairDb.PartReapir" Visible="@(partreapir != null)" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="PartId" style="width: 100%" Text="Nazwa części">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDropDownDataGrid Data="@getPartsForPartIdResult" Placeholder="Wybierz" ShowSearch="false" style="display: block; width: 100%" TextProperty="Name" @bind-Value="@(partreapir.PartId)" ValueProperty="Id" Name="PartId">
+                </RadzenDropDownDataGrid>
+                <RadzenRequiredValidator Component="PartId" DefaultValue="0" style="position: absolute" Text="Pole wymagane">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="PartId" style="width: 100%" Text="ilość">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenNumeric Max="1000" Min="1" style="width: 100%" @bind-Value="@(partreapir.Quantity)" Name="Numeric0">
+                </RadzenNumeric>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Zapisz">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" style="margin-left: 1rem" Text="Anuluj" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

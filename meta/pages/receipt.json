@@ -1,0 +1,192 @@
+{
+  "access": "Authenticated",
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12 align-items-center d-flex justify-content-between",
+              "components": [
+                {
+                  "name": "label3",
+                  "text": "${RepairId.Client.Name + \" \" + RepairId.Client.LastName}",
+                  "type": "label"
+                },
+                {
+                  "name": "label0",
+                  "text": "${\"Data: \" + RepairId.Date.ToLongDateString()}",
+                  "type": "label"
+                }
+              ],
+              "name": "col0",
+              "type": "col"
+            }
+          ],
+          "name": "row0",
+          "style": {
+            "marginBottom": "10px"
+          },
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12 align-items-center d-flex justify-content-between",
+              "components": [
+                {
+                  "name": "label4",
+                  "text": "${RepairId.Client.Phone + \" \" + RepairId.Client.Email}",
+                  "type": "label"
+                }
+              ],
+              "name": "col4",
+              "type": "col"
+            }
+          ],
+          "name": "row4",
+          "style": {
+            "marginBottom": "10px"
+          },
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12 align-items-center d-flex justify-content-between",
+              "components": [
+                {
+                  "name": "label5",
+                  "text": "${RepairId.Client.NIP}",
+                  "type": "label"
+                }
+              ],
+              "name": "col5",
+              "type": "col"
+            }
+          ],
+          "name": "row5",
+          "style": {
+            "marginBottom": "20px"
+          },
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12 justify-content-center d-flex align-items-center",
+              "components": [
+                {
+                  "name": "label1",
+                  "style": {
+                    "fontSize": "18px",
+                    "fontWeight": "600"
+                  },
+                  "text": "${\"ID \" + RepairId.Id}",
+                  "type": "label"
+                }
+              ],
+              "name": "col1",
+              "type": "col"
+            }
+          ],
+          "name": "row1",
+          "style": {
+            "paddingBottom": "20px"
+          },
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "columns": [
+                    {
+                      "property": "Part.Name",
+                      "title": "Część"
+                    },
+                    {
+                      "property": "Quantity",
+                      "title": "Ilość"
+                    },
+                    {
+                      "property": "Part.Cost",
+                      "title": "Koszt"
+                    }
+                  ],
+                  "data": "${RepairId.PartReapirs}",
+                  "itemType": "SimpleCarRepair.Models.SimpleCarRepairDb.PartReapir",
+                  "name": "datagrid0",
+                  "type": "datagrid"
+                }
+              ],
+              "name": "col2",
+              "type": "col"
+            }
+          ],
+          "name": "row2",
+          "style": {
+            "marginBottom": "20px"
+          },
+          "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-12 justify-content-end d-flex",
+              "components": [
+                {
+                  "name": "label2",
+                  "style": {
+                    "fontSize": "16px",
+                    "fontWeight": "600"
+                  },
+                  "text": "${\"Suma: \" + RepairId?.PartReapirs?.Sum(x => x.Part.Cost * x.Quantity)}",
+                  "type": "label"
+                }
+              ],
+              "name": "col3",
+              "type": "col"
+            }
+          ],
+          "name": "row3",
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "GetRepair",
+        "parameters": [
+          {
+            "name": "id",
+            "type": "int",
+            "value": "${parameters.id}"
+          }
+        ],
+        "schema": {
+          "$ref": "#/definitions/Repair",
+          "async": true,
+          "dotnetType": "System.Threading.Tasks.Task<SimpleCarRepair.Models.SimpleCarRepairDb.Repair>"
+        },
+        "then": [
+          {
+            "name": "RepairId",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "SimpleCarRepair.Models.SimpleCarRepairDb.Repair"
+          }
+        ],
+        "type": "invoke-method"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Receipt"
+}

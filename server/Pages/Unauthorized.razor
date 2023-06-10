@@ -1,0 +1,24 @@
+﻿@page "/unauthorized"
+@layout MainLayout
+@inherits SimpleCarRepair.Pages.UnauthorizedComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using SimpleCarRepair.Models.SimpleCarRepairDb
+@using Microsoft.AspNetCore.Identity;
+@using SimpleCarRepair.Models
+@using Microsoft.AspNetCore.Authorization
+<PageTitle>Unauthorized</PageTitle>
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Unauthorized">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenHtml>
+          Brak uprawnień do przeglądania tego widoku
+        </RadzenHtml>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>
